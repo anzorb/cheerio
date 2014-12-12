@@ -32,6 +32,12 @@ exports.drinks = [
   '</ul>'
 ].join('');
 
+exports.scriptTags = [
+  '<script src="chocolates">',
+    'var a = "<script></script>"',
+  '</script>'
+].join('');
+
 exports.food = [
   '<ul id="food">',
     exports.fruits,

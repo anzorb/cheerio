@@ -3,7 +3,8 @@ var expect = require('expect.js'),
   food = require('./fixtures').food,
   fruits = require('./fixtures').fruits,
   drinks = require('./fixtures').drinks,
-  text = require('./fixtures').text;
+  text = require('./fixtures').text,
+  scriptTags = require('./fixtures').scriptTags;
 
 describe('$(...)', function() {
 
@@ -60,6 +61,13 @@ describe('$(...)', function() {
         $('#fruits').find(':bah');
       }).to.throwException(function(err) {
         expect(err).to.be.a(SyntaxError);
+      });
+    });
+
+    describe('nested javascript templates', function(){
+      it('should handle HTML strings inside script tags', function(){
+        var $$ = cheerio.load(scriptTags);
+        expect($$('script').text()).to.equal('var a = "<script></script>"');
       });
     });
 
